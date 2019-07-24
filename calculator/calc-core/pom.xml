@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>calc-console</artifactId>
+        <artifactId>calculator</artifactId>
         <groupId>com.epam</groupId>
         <version>1.0</version>
     </parent>
@@ -14,22 +14,11 @@
     <version>1.0</version>
     <name>calc-core</name>
 
-    <properties>
-        <junit.version>4.12</junit.version>
-        <calc.interface.version>1.0</calc.interface.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.epam</groupId>
             <artifactId>calc-interface</artifactId>
             <version>${calc.interface.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
