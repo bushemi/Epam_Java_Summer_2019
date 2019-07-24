@@ -2,3 +2,7 @@
 .git
 .git-credentials
 *.iml
+target
+*.log
+logs
+log
