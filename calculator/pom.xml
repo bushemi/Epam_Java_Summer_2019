@@ -5,36 +5,39 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.epam</groupId>
-    <artifactId>calc-console</artifactId>
+    <artifactId>calculator</artifactId>
     <version>1.0</version>
+
     <packaging>pom</packaging>
 
     <properties>
-        <name.jar>App</name.jar>
         <java.version>1.8</java.version>
         <maven-compiler-plagin.version>3.7.0</maven-compiler-plagin.version>
+        <maven-assembly-plagin.version>2.3</maven-assembly-plagin.version>
+        <junit.version>4.12</junit.version>
+        <logback.version>1.2.3</logback.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <calc.interface.version>1.0</calc.interface.version>
     </properties>
 
     <modules>
         <module>calc-interface</module>
         <module>calc-core</module>
+        <module>calc-console</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <build>
-        <finalName>${name.jar}</finalName>
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <configuration>
-                        <archive>
-                            <manifest>
-                                <mainClass>${name.jar}</mainClass>
-                            </manifest>
-                        </archive>
-                    </configuration>
-                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
