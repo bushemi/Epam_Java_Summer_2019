@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>calculator</artifactId>
+        <groupId>com.epam</groupId>
+        <version>1.0</version>
+    </parent>
+    <packaging>jar</packaging>
+    <name>calc-console</name>
+
+    <artifactId>calc-console</artifactId>
+
+    <properties>
+        <main-class-name>com.epam.App</main-class-name>
+        <name.jar>App</name.jar>
+        <log.folder>${project.build.directory}/logs</log.folder>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.epam</groupId>
+            <artifactId>calc-core</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>${maven-assembly-plagin.version}</version>
+            <type>maven-plugin</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-nop</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-jdk14</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+
+        <plugins>
+            <plugin>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.0.2</version>
+            <executions>
+                <execution>
+                    <id>default-jar</id>
+                    <phase>none</phase>
+                </execution>
+            </executions>
+        </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>jar-with-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.epam.App</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <finalName>${name.jar}</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
