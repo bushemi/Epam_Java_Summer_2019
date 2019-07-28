@@ -26,9 +26,18 @@ public interface List<T> {
      * Adds element to the collection.
      *
      * @param element that system needs to put to collection.
-     * @return index of a new element in the collection.
+     * @return was it added or not.
      */
-    int add(T element);
+    boolean add(T element);
+
+    /**
+     * Adds element to the collection.
+     *
+     * @param element that system needs to put to collection.
+     * @param index where user needs to put an element to collection.
+     * @return was it added or not.
+     */
+    boolean add(T element, int index);
 
     /**
      * Deletes element from the collection by given index and return this deleted element.
