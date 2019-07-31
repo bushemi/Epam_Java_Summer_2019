@@ -17,6 +17,7 @@ public class CalcImpl implements Calc {
     }
 
     public double division(double a, double b) {
+        if (a == 0 && b == 0) return Double.NEGATIVE_INFINITY;
         return a / b;
     }
 }

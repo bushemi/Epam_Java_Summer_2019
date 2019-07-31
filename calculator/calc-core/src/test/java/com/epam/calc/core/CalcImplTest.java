@@ -53,4 +53,10 @@ public class CalcImplTest {
         Assert.assertTrue(Double.isInfinite(result));
     }
 
+    @Test
+    public void divisionZeroByZero() {
+        double result = calculateService.division(0, 0);
+        Assert.assertTrue(Double.isInfinite(result));
+    }
+
 }
