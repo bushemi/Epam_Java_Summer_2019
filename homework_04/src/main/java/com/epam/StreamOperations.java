@@ -53,8 +53,8 @@ class StreamOperations {
     }
 
     public static <T> Stream<T> zip(Stream<T> first, Stream<T> second) {
-        Iterator<T> iterator1 = first.collect(Collectors.toList()).iterator();
-        Iterator<T> iterator2 = second.collect(Collectors.toList()).iterator();
+        Iterator<T> iterator1 = first.iterator();
+        Iterator<T> iterator2 = second.iterator();
         List<T> result = new ArrayList<>();
         while (iterator1.hasNext() && iterator2.hasNext()) {
             result.add(iterator1.next());
