@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="add_foreign_key_from_student_to_person" author="bushemi2001@gmail.com">
+            <addForeignKeyConstraint baseColumnNames="person_id"
+                                     baseTableName="students"
+                                     constraintName="fk_students_persons"
+                                     referencedColumnNames="id"
+                                     referencedTableName="persons"/>
+    </changeSet>
+
+    <changeSet id="add_foreign_key_from_student_course_to_student" author="bushemi2001@gmail.com">
+            <addForeignKeyConstraint baseColumnNames="student_id"
+                                     baseTableName="students_courses"
+                                     constraintName="fk_students"
+                                     referencedColumnNames="id"
+                                     referencedTableName="students"/>
+    </changeSet>
+
+    <changeSet id="add_foreign_key_from_student_course_to_course" author="bushemi2001@gmail.com">
+            <addForeignKeyConstraint baseColumnNames="course_id"
+                                     baseTableName="students_courses"
+                                     constraintName="fk_course"
+                                     referencedColumnNames="id"
+                                     referencedTableName="courses"/>
+    </changeSet>
+
+
+
+    <changeSet id="tag-0.2" author="bushemi2001@gmail.com">
+        <tagDatabase tag="0.2" />
+    </changeSet>
+
+</databaseChangeLog>
