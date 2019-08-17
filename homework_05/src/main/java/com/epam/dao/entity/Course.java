@@ -8,22 +8,22 @@ public class Course {
 
     private String courseName;
 
-    private Collection<Student> students;
+    private Collection<Integer> studentIds;
 
     public Course(Integer id, String courseName) {
         this.id = id;
         this.courseName = courseName;
     }
 
-    public Course(Integer id, String courseName, Collection<Student> students) {
+    public Course(Integer id, String courseName, Collection<Integer> studentIds) {
         this.id = id;
         this.courseName = courseName;
-        this.students = students;
+        this.studentIds = studentIds;
     }
 
-    public Course(String courseName, Collection<Student> students) {
+    public Course(String courseName, Collection<Integer> studentIds) {
         this.courseName = courseName;
-        this.students = students;
+        this.studentIds = studentIds;
     }
 
     public Integer getId() {
@@ -42,28 +42,27 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public Collection<Student> getStudents() {
-        return students;
+    public Collection<Integer> getStudentIds() {
+        return studentIds;
     }
 
-    public void setStudents(Collection<Student> students) {
-        this.students = students;
+    public void setStudentIds(Collection<Integer> studentIds) {
+        this.studentIds = studentIds;
     }
 
     @Override
     public boolean equals(Object o) {
-
         if (this == o) return true;
         if (!(o instanceof Course)) return false;
         Course course = (Course) o;
         return Objects.equals(getId(), course.getId()) &&
                 Objects.equals(getCourseName(), course.getCourseName()) &&
-                Objects.equals(getStudents(), course.getStudents());
+                Objects.equals(getStudentIds(), course.getStudentIds());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getCourseName(), getStudents());
+        return Objects.hash(getId(), getCourseName(), getStudentIds());
     }
 
     @Override
@@ -71,7 +70,7 @@ public class Course {
         return "Course{" +
                 "id=" + id +
                 ", courseName='" + courseName + '\'' +
-                ", students=" + students +
+                ", studentIds=" + studentIds +
                 '}';
     }
 }
