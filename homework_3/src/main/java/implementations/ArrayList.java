@@ -78,8 +78,14 @@ public class ArrayList<T> implements List<T> {
         checkForTooSmallIndex(index);
         checkForTooBigIndex(index);
         T element = (T) array[index];
-        System.arraycopy(array, index, array, index + 1,
-                size - index);
+        Object[] arrayBeforeIndex = new Object[index];
+        System.arraycopy(array, 0, arrayBeforeIndex, 0, index);
+        int srcPos = size - (index + 1);
+        Object[] arrayAfterIndex = new Object[srcPos];
+        System.arraycopy(array, srcPos + 1, arrayAfterIndex, 0, srcPos);
+
+        System.arraycopy(arrayBeforeIndex, 0, array, 0, index);
+        System.arraycopy(arrayAfterIndex, 0, array, index, srcPos);
         size--;
         return element;
     }
