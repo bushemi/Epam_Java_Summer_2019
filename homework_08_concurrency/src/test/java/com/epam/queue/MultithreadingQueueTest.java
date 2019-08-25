@@ -13,7 +13,9 @@ public class MultithreadingQueueTest {
     public void test() throws InterruptedException {
         //GIVEN
         Thread producer = new Thread(MultithreadingQueueTest::produceToTheQueue);
+        producer.setName("producer");
         Thread consumer = new Thread(MultithreadingQueueTest::consumeFromTheQueue);
+        consumer.setName("consumer");
 
         //WHEN
         producer.start();
