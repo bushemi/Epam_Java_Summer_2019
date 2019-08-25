@@ -1,0 +1,1 @@
+Task: create object House. User shouldn't know how to build it and in what order.
