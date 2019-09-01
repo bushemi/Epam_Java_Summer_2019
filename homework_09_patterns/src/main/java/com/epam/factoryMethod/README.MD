@@ -1,0 +1,1 @@
+Task: User should be able to create Tea or Coffee classes, but should not know about ingredients.
