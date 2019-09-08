@@ -6,8 +6,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 
-public class LogViewerTest {
-    LogViewer logViewer = new LogViewer();
+public class LogsViewerTest {
+    LogsViewer logViewer = new LogsViewer();
 
     @Test
     public void createResultForView() {
