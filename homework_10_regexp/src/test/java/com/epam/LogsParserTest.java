@@ -7,6 +7,7 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 public class LogsParserTest {
+    private LogsParser logsParser = new LogsParser();
 
     @Test
     public void parseLogs() {
@@ -14,7 +15,7 @@ public class LogsParserTest {
         String text = "2018-07-12 08:15:06.837 INFO   Module=MIC Operation: Logout       Execution time: 16654 ms";
 
         //WHEN
-        LogLine logLine = LogsParser.parseLogs(text);
+        LogLine logLine = logsParser.parseLogs(text);
 
         //THEN
         assertThat(logLine.getDateTime(), is(equalTo("2018-07-12 08:15:06.837")));
