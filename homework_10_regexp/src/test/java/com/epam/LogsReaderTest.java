@@ -10,14 +10,12 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 
 public class LogsReaderTest {
     private final LogsReader reader = new LogsReader();
+    static final String LOG_FILE_NAME = "src/test/resources/test-logs.txt";
 
     @Test
-    public void test() {
-        //GIVEN
-        String fileName = "src/test/resources/test-logs.txt";
-
+    public void shouldReadLogsFromFile() {
         //WHEN
-        List<String> read = reader.read(Paths.get(fileName));
+        List<String> read = reader.read(Paths.get(LOG_FILE_NAME));
 
         //THEN
         assertThat(read, hasSize(35));
