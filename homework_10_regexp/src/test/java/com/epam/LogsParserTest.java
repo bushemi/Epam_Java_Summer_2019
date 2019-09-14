@@ -7,7 +7,8 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 public class LogsParserTest {
-    private LogsParser logsParser = new LogsParser();
+    private StringParser parser = new StringParser();
+    private LogsParser logsParser = new LogsParser(parser);
 
     @Test
     public void parseLogs() {
