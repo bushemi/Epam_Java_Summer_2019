@@ -17,9 +17,10 @@ import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertNotNull;
 
 public class LogsViewerTest {
+    private StringParser stringParser = new StringParser();
     private LogsViewer logsViewer = new LogsViewer();
     private LogsReader logsReader = new LogsReader();
-    private LogsParser logsParser = new LogsParser();
+    private LogsParser logsParser = new LogsParser(stringParser);
 
     @Test
     public void createResultForView() {
