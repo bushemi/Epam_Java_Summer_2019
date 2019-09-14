@@ -1,6 +1,9 @@
 before_script:
-  - apt update
-  - apt install maven
+  - apt-get update
+  - apt-get install openjdk-8-jdk
+  - java -version
+  - apt-get install maven
+  - maven -version
 
 build:
   stage: build
