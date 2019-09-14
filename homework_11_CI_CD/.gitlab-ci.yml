@@ -1,0 +1,11 @@
+build:
+  stage: build
+  script:
+    - cd ./homework_11_CI_CD/
+    - mvn compile
+
+test:
+  stage: test
+  script:
+    - cd ./homework_11_CI_CD/
+    - mvn test
