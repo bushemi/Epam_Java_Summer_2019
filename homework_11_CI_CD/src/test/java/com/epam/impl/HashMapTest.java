@@ -31,7 +31,7 @@ public class HashMapTest {
         Map<String, Integer> map = new HashMap<>();
 
         //WHEN
-        map.put("put", 1);
+        map.put("put", 2);
 
         //THEN
         Integer numberFromMap = map.get("put");
