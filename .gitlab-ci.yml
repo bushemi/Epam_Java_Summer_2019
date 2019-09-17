@@ -25,4 +25,4 @@ deploy:
   stage: deploy
   script:
     - cd ./homework_11_CI_CD/
-    - mvn $MAVEN_CLI_OPTS deploy
+    - mvn $MAVEN_CLI_OPTS deploy -e
