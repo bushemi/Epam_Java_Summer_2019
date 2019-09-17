@@ -6,7 +6,7 @@
 
     <groupId>com.epam</groupId>
     <artifactId>homework_11_CI_CD</artifactId>
-    <version>1.0</version>
+    <version>1.0.b</version>
 
 
     <properties>
