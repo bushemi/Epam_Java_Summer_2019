@@ -20,3 +20,9 @@ test:
   script:
     - cd ./homework_11_CI_CD/
     - mvn $MAVEN_CLI_OPTS test
+
+deploy:
+  stage: deploy
+  script:
+    - cd ./homework_11_CI_CD/
+    - mvn $MAVEN_CLI_OPTS deploy
