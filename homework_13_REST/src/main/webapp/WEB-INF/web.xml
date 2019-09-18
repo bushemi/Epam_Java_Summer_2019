@@ -1,0 +1,26 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>com.epam.servlets.TestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TestsServlet</servlet-name>
+        <servlet-class>com.epam.servlets.TestsServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/tests/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestsServlet</servlet-name>
+        <url-pattern>/tests</url-pattern>
+    </servlet-mapping>
+
+</web-app>
