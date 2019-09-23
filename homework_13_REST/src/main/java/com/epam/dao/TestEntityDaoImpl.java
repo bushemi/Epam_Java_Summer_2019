@@ -1,8 +1,8 @@
 package com.epam.dao;
 
-import com.epam.service.DbConnectionService;
 import com.epam.dao.interfaces.TestEntityDao;
 import com.epam.model.TestEntity;
+import com.epam.service.DbConnectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +25,7 @@ public class TestEntityDaoImpl implements TestEntityDao {
 
     @Override
     public long save(TestEntity entity) {
+        LOG.info("save {}", entity);
         try (Connection connection = connections.getConnection()) {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("INSERT INTO tests (id, subject, test_name, difficulty, seconds_to_complete) VALUES (null, ?, ?, ?, ?);");
@@ -41,11 +42,13 @@ public class TestEntityDaoImpl implements TestEntityDao {
 
     @Override
     public void saveAll(List<TestEntity> entities) {
+        LOG.info("saveAll {}", entities);
         entities.forEach(this::save);
     }
 
     @Override
     public TestEntity findById(Long id) {
+        LOG.info("findById {}", id);
         try (Connection connection = connections.getConnection()) {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("select * from tests where id = ?;");
@@ -72,6 +75,7 @@ public class TestEntityDaoImpl implements TestEntityDao {
 
     @Override
     public List<TestEntity> findAll() {
+        LOG.info("findAll");
         List<TestEntity> tests = new ArrayList<>();
         try (Connection connection = connections.getConnection()) {
             PreparedStatement preparedStatement =
@@ -84,11 +88,13 @@ public class TestEntityDaoImpl implements TestEntityDao {
         } catch (SQLException | IOException e) {
             LOG.error("Can't find all tests. {}", e.getMessage());
         }
+        LOG.info("the result of findAll - {}", tests);
         return tests;
     }
 
     @Override
     public void update(TestEntity entity) {
+        LOG.info("update {}", entity);
         try (Connection connection = connections.getConnection()) {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("update tests set subject=?, test_name=?, difficulty=?, seconds_to_complete=? where id = ?;");
@@ -110,6 +116,7 @@ public class TestEntityDaoImpl implements TestEntityDao {
 
     @Override
     public void delete(Long id) {
+        LOG.info("delete {}", id);
         try (Connection connection = connections.getConnection()) {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("delete * from tests where id = ?;");
