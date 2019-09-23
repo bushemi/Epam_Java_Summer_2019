@@ -30,11 +30,11 @@ public class TestJsonConverterImpl implements JsonConverter<TestEntity> {
                 continue;
             }
             if (pair.contains("\"subject\"")) {
-                testEntity.setSubject(value.substring(1, value.length()-1));
+                testEntity.setSubject(value.substring(1, value.length() - 1));
                 continue;
             }
             if (pair.contains("\"testName\"")) {
-                testEntity.setTestName(value.substring(1, value.length()-1));
+                testEntity.setTestName(value.substring(1, value.length() - 1));
                 continue;
             }
             if (pair.contains("\"difficulty\"")) {
@@ -49,40 +49,49 @@ public class TestJsonConverterImpl implements JsonConverter<TestEntity> {
     }
 
     private void includeDifficultyFromValueToTestEntity(TestEntity testEntity, String value) {
-        if (isValueNull(value) || isValueString(value) || isValueNegative(value)) {
+        if (isValueNull(value)) {
             testEntity.setDifficulty(null);
         } else {
-            testEntity.setDifficulty(Integer.parseInt(value));
+            int difficulty;
+            try {
+                difficulty = Integer.parseInt(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("\"difficulty\" должны быть числом.");
+            }
+            testEntity.setDifficulty(difficulty);
         }
     }
 
     private void includeSecondsToCompleteFromValueToTestEntity(TestEntity testEntity, String value) {
-        if (isValueNull(value) || isValueString(value) || isValueNegative(value)) {
+        if (isValueNull(value)) {
             testEntity.setSecondsToComplete(null);
         } else {
-            testEntity.setSecondsToComplete(Integer.parseInt(value));
+            int secondsToComplete;
+            try {
+                secondsToComplete = Integer.parseInt(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("\"secondsToComplete\" должны быть числом.");
+            }
+            testEntity.setSecondsToComplete(secondsToComplete);
         }
     }
 
 
     private void includeIdFromValueToTestEntity(TestEntity testEntity, String value) {
-        if (isValueNull(value) || isValueString(value) || isValueNegative(value)) {
+        if (isValueNull(value)) {
             testEntity.setId(null);
         } else {
-            testEntity.setId(Long.parseLong(value));
+            Long id;
+            try {
+                id = Long.parseLong(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("значение \"id\" должно быть числом.");
+            }
+            testEntity.setId(id);
         }
     }
 
     private boolean isValueNull(String value) {
         return value.toLowerCase().contains("null");
     }
-
-    private boolean isValueString(String value) {
-        return value.contains("\"");
-    }
-
-    private boolean isValueNegative(String value) {
-        return value.contains("-");
-    }
-
 }
