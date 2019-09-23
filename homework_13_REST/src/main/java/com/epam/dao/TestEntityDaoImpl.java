@@ -6,7 +6,6 @@ import com.epam.service.DbConnectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,7 +33,7 @@ public class TestEntityDaoImpl implements TestEntityDao {
             if (resultSet.next()) {
                 return resultSet.getLong(1);
             }
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             LOG.error("Can't save a new entity {}. {}", entity, e.getMessage());
         }
         return 0;
@@ -58,7 +57,7 @@ public class TestEntityDaoImpl implements TestEntityDao {
             if (resultSet.next()) {
                 return getTestEntityFromResultSet(resultSet);
             }
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             LOG.error("Can't find an entity by id {}. {}", id, e.getMessage());
         }
         return null;
@@ -85,7 +84,7 @@ public class TestEntityDaoImpl implements TestEntityDao {
             while (resultSet.next()) {
                 tests.add(getTestEntityFromResultSet(resultSet));
             }
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             LOG.error("Can't find all tests. {}", e.getMessage());
         }
         LOG.info("the result of findAll - {}", tests);
@@ -102,7 +101,7 @@ public class TestEntityDaoImpl implements TestEntityDao {
             preparedStatement.setLong(5, entity.getId());
             preparedStatement.executeUpdate();
 
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             LOG.error("Can't save a new entity {}. {}", entity, e.getMessage());
         }
     }
@@ -123,7 +122,7 @@ public class TestEntityDaoImpl implements TestEntityDao {
             preparedStatement.setLong(1, id);
 
             preparedStatement.executeUpdate();
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             LOG.error("Can't delete an entity with id = {}. {}", id, e.getMessage());
         }
     }
