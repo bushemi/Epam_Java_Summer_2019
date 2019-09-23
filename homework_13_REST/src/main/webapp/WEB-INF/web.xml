@@ -6,11 +6,11 @@
 
     <servlet>
         <servlet-name>TestServlet</servlet-name>
-        <servlet-class>com.epam.servlets.TestServlet</servlet-class>
+        <servlet-class>com.epam.web.servlets.TestServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>TestsServlet</servlet-name>
-        <servlet-class>com.epam.servlets.TestsServlet</servlet-class>
+        <servlet-name>MultiTestsServlet</servlet-name>
+        <servlet-class>com.epam.web.servlets.MultiTestsServlet</servlet-class>
     </servlet>
 
 
@@ -19,7 +19,7 @@
         <url-pattern>/tests/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>TestsServlet</servlet-name>
+        <servlet-name>MultiTestsServlet</servlet-name>
         <url-pattern>/tests</url-pattern>
     </servlet-mapping>
 
