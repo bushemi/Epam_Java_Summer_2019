@@ -28,10 +28,13 @@ public class TestEntityDaoImpl implements TestEntityDao {
         LOG.info("save = {}", entity);
         try (Connection connection = connections.getConnection()) {
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("INSERT INTO tests (id, subject, test_name, difficulty, seconds_to_complete) VALUES (null, ?, ?, ?, ?);");
+                    connection.prepareStatement("INSERT INTO tests (id, subject, test_name, difficulty, seconds_to_complete) VALUES (null, ?, ?, ?, ?);"
+                            , PreparedStatement.RETURN_GENERATED_KEYS);
             setFieldsForSavingEntityToDb(entity, preparedStatement);
+            preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            if (resultSet.next()) {
+            boolean next = resultSet.next();
+            if (next) {
                 return resultSet.getLong(1);
             }
         } catch (SQLException e) {
@@ -119,7 +122,7 @@ public class TestEntityDaoImpl implements TestEntityDao {
         LOG.info("delete = {}", id);
         try (Connection connection = connections.getConnection()) {
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("delete * from tests where id = ?;");
+                    connection.prepareStatement("delete from tests where id = ?;");
             preparedStatement.setLong(1, id);
 
             preparedStatement.executeUpdate();

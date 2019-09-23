@@ -8,7 +8,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,13 +33,13 @@ public class TestEntityDaoImplTest {
     private ResultSet resultSet = mock(ResultSet.class);
 
     @Test
-    public void save() throws IOException, SQLException {
+    public void save() throws SQLException {
         //GIVEN
         TestEntity entity = new TestEntity();
         entity.setDifficulty(DEFAULT_DIFFICULTY);
         entity.setSecondsToComplete(DEFAULT_SECONDS_TO_COMPLETE);
         when(service.getConnection()).thenReturn(connection);
-        when(connection.prepareStatement(QUERY_FOR_INSERT))
+        when(connection.prepareStatement(QUERY_FOR_INSERT, PreparedStatement.RETURN_GENERATED_KEYS))
                 .thenReturn(statement);
         when(statement.getGeneratedKeys()).thenReturn(resultSet);
 
@@ -49,13 +48,13 @@ public class TestEntityDaoImplTest {
 
         //THEN
         verify(service).getConnection();
-        verify(connection).prepareStatement(QUERY_FOR_INSERT);
+        verify(connection).prepareStatement(QUERY_FOR_INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
         verify(statement).getGeneratedKeys();
         verify(resultSet).next();
     }
 
     @Test
-    public void saveAll() throws IOException, SQLException {
+    public void saveAll() throws SQLException {
         //GIVEN
         TestEntity testEntity1 = new TestEntity();
         testEntity1.setDifficulty(DEFAULT_DIFFICULTY);
@@ -68,7 +67,7 @@ public class TestEntityDaoImplTest {
         testEntity3.setSecondsToComplete(DEFAULT_SECONDS_TO_COMPLETE);
 
         when(service.getConnection()).thenReturn(connection);
-        when(connection.prepareStatement(QUERY_FOR_INSERT))
+        when(connection.prepareStatement(QUERY_FOR_INSERT, PreparedStatement.RETURN_GENERATED_KEYS))
                 .thenReturn(statement);
         when(statement.getGeneratedKeys()).thenReturn(resultSet);
 
@@ -77,13 +76,14 @@ public class TestEntityDaoImplTest {
 
         //THEN
         verify(service, times(3)).getConnection();
-        verify(connection, times(3)).prepareStatement(QUERY_FOR_INSERT);
+        verify(connection, times(3))
+                .prepareStatement(QUERY_FOR_INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
         verify(statement, times(3)).getGeneratedKeys();
         verify(resultSet, times(3)).next();
     }
 
     @Test
-    public void findById() throws SQLException, IOException {
+    public void findById() throws SQLException {
         //GIVEN
         when(service.getConnection()).thenReturn(connection);
         when(connection.prepareStatement("select * from tests where id = ?;"))
@@ -100,7 +100,7 @@ public class TestEntityDaoImplTest {
     }
 
     @Test
-    public void findAll() throws IOException, SQLException {
+    public void findAll() throws SQLException {
         //GIVEN
         when(service.getConnection()).thenReturn(connection);
         when(connection.prepareStatement("select * from tests;"))
@@ -117,7 +117,7 @@ public class TestEntityDaoImplTest {
     }
 
     @Test
-    public void update() throws IOException, SQLException {
+    public void update() throws SQLException {
         //GIVEN
         TestEntity entity = new TestEntity();
         entity.setId(1L);
@@ -139,7 +139,7 @@ public class TestEntityDaoImplTest {
     public void delete() throws SQLException {
         //GIVEN
         when(service.getConnection()).thenReturn(connection);
-        when(connection.prepareStatement("delete * from tests where id = ?;"))
+        when(connection.prepareStatement("delete from tests where id = ?;"))
                 .thenReturn(statement);
 
         //WHEN
@@ -147,7 +147,7 @@ public class TestEntityDaoImplTest {
 
         //THEN
         verify(service).getConnection();
-        verify(connection).prepareStatement("delete * from tests where id = ?;");
+        verify(connection).prepareStatement("delete from tests where id = ?;");
         verify(statement).executeUpdate();
     }
 
