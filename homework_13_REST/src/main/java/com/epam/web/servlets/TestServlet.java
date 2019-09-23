@@ -16,6 +16,10 @@ import static javax.servlet.http.HttpServletResponse.SC_OK;
 public class TestServlet extends AbstractTestServlet {
     private static final Logger LOG = LoggerFactory.getLogger("TestServlet");
 
+    public TestServlet() {
+        super();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         LOG.info("doGet from session id = {}", req.getSession().getId());

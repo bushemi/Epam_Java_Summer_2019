@@ -21,6 +21,10 @@ import static javax.servlet.http.HttpServletResponse.SC_OK;
 public class MultiTestsServlet extends AbstractTestServlet {
     private static final Logger LOG = LoggerFactory.getLogger("MultiTestsServlet");
 
+    public MultiTestsServlet() {
+        super();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         LOG.info("doGet from session id = {}", req.getSession().getId());
@@ -82,7 +86,7 @@ public class MultiTestsServlet extends AbstractTestServlet {
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         LOG.info("doPut from session id = {}", req.getSession().getId());
         resp.setCharacterEncoding(encoding);
         try (PrintWriter out = resp.getWriter()) {
