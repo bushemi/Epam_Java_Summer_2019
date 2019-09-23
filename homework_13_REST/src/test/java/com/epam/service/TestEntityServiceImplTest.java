@@ -7,8 +7,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class TestEntityServiceImplTest {
@@ -100,5 +99,18 @@ public class TestEntityServiceImplTest {
 
         //THEN
         verify(testEntityDao).delete(ID);
+    }
+
+    @Test
+    public void isTestExist() {
+        //GIVEN
+        when(testEntityDao.isTestExist(ID)).thenReturn(true);
+
+        //WHEN
+        boolean testExist = service.isTestExist(ID);
+
+        //THEN
+        verify(testEntityDao).isTestExist(ID);
+        assertTrue(testExist);
     }
 }

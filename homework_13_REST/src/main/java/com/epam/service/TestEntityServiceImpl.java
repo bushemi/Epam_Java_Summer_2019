@@ -52,4 +52,9 @@ public class TestEntityServiceImpl implements TestEntityService {
     public void updateAll(List<TestEntity> entities) {
         entities.forEach(dao::update);
     }
+
+    @Override
+    public boolean isTestExist(Long id) {
+        return dao.isTestExist(id);
+    }
 }

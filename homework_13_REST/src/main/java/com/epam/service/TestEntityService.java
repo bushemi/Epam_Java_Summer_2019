@@ -8,4 +8,6 @@ import java.util.List;
 public interface TestEntityService extends CrudOperationsInterface<TestEntity> {
     void updateAll(List<TestEntity> entities);
 
+    boolean isTestExist(Long id);
+
 }
