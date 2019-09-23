@@ -1,7 +1,7 @@
 package com.epam.dao;
 
-import com.epam.service.DbConnectionService;
 import com.epam.model.TestEntity;
+import com.epam.service.DbConnectionService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -135,7 +136,7 @@ public class TestEntityDaoImplTest {
     }
 
     @Test
-    public void delete() throws IOException, SQLException {
+    public void delete() throws SQLException {
         //GIVEN
         when(service.getConnection()).thenReturn(connection);
         when(connection.prepareStatement("delete * from tests where id = ?;"))
@@ -148,5 +149,26 @@ public class TestEntityDaoImplTest {
         verify(service).getConnection();
         verify(connection).prepareStatement("delete * from tests where id = ?;");
         verify(statement).executeUpdate();
+    }
+
+    @Test
+    public void isTestExist() throws SQLException {
+        //GIVEN
+        when(service.getConnection()).thenReturn(connection);
+        when(connection.prepareStatement("select count(*) from tests where id = ?;"))
+                .thenReturn(statement);
+        when(statement.executeQuery()).thenReturn(resultSet);
+        when(resultSet.next()).thenReturn(true);
+        when(resultSet.getInt(1)).thenReturn(1);
+
+        //WHEN
+        boolean testExist = testDao.isTestExist(1L);
+
+        //THEN
+        verify(service).getConnection();
+        verify(connection).prepareStatement("select count(*) from tests where id = ?;");
+        verify(statement).executeQuery();
+        verify(resultSet).next();
+        assertTrue(testExist);
     }
 }

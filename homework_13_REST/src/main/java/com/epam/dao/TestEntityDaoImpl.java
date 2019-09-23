@@ -1,5 +1,6 @@
 package com.epam.dao;
 
+import com.epam.DBException;
 import com.epam.dao.interfaces.TestEntityDao;
 import com.epam.model.TestEntity;
 import com.epam.service.DbConnectionService;
@@ -24,7 +25,7 @@ public class TestEntityDaoImpl implements TestEntityDao {
 
     @Override
     public long save(TestEntity entity) {
-        LOG.info("save {}", entity);
+        LOG.info("save = {}", entity);
         try (Connection connection = connections.getConnection()) {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("INSERT INTO tests (id, subject, test_name, difficulty, seconds_to_complete) VALUES (null, ?, ?, ?, ?);");
@@ -34,20 +35,20 @@ public class TestEntityDaoImpl implements TestEntityDao {
                 return resultSet.getLong(1);
             }
         } catch (SQLException e) {
-            LOG.error("Can't save a new entity {}. {}", entity, e.getMessage());
+            LOG.error("Can't save a new entity = {}. {}", entity, e.getMessage());
         }
         return 0;
     }
 
     @Override
     public void saveAll(List<TestEntity> entities) {
-        LOG.info("saveAll {}", entities);
+        LOG.info("saveAll = {}", entities);
         entities.forEach(this::save);
     }
 
     @Override
     public TestEntity findById(Long id) {
-        LOG.info("findById {}", id);
+        LOG.info("findById = {}", id);
         try (Connection connection = connections.getConnection()) {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("select * from tests where id = ?;");
@@ -58,7 +59,7 @@ public class TestEntityDaoImpl implements TestEntityDao {
                 return getTestEntityFromResultSet(resultSet);
             }
         } catch (SQLException e) {
-            LOG.error("Can't find an entity by id {}. {}", id, e.getMessage());
+            LOG.error("Can't find an entity by id = {}. {}", id, e.getMessage());
         }
         return null;
     }
@@ -93,7 +94,7 @@ public class TestEntityDaoImpl implements TestEntityDao {
 
     @Override
     public void update(TestEntity entity) {
-        LOG.info("update {}", entity);
+        LOG.info("update = {}", entity);
         try (Connection connection = connections.getConnection()) {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("update tests set subject=?, test_name=?, difficulty=?, seconds_to_complete=? where id = ?;");
@@ -102,7 +103,7 @@ public class TestEntityDaoImpl implements TestEntityDao {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            LOG.error("Can't save a new entity {}. {}", entity, e.getMessage());
+            LOG.error("Can't save a new entity = {}. {}", entity, e.getMessage());
         }
     }
 
@@ -115,7 +116,7 @@ public class TestEntityDaoImpl implements TestEntityDao {
 
     @Override
     public void delete(Long id) {
-        LOG.info("delete {}", id);
+        LOG.info("delete = {}", id);
         try (Connection connection = connections.getConnection()) {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("delete * from tests where id = ?;");
@@ -125,5 +126,22 @@ public class TestEntityDaoImpl implements TestEntityDao {
         } catch (SQLException e) {
             LOG.error("Can't delete an entity with id = {}. {}", id, e.getMessage());
         }
+    }
+
+    @Override
+    public boolean isTestExist(Long id) {
+        LOG.info("isTestExist = {}", id);
+        try (Connection connection = connections.getConnection()) {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("select count(*) from tests where id = ?;");
+            preparedStatement.setLong(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) return resultSet.getInt(1) > 0;
+            return false;
+        } catch (SQLException e) {
+            LOG.error("Can't search an entity with id = {}. {}", id, e.getMessage());
+        }
+        throw new DBException("Что-то пошло не так при работе с базой данных.");
     }
 }
