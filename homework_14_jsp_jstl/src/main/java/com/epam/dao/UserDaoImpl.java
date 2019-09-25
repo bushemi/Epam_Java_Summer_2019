@@ -19,7 +19,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Long save(UserCreating user) {
-        LOG.info("save = {}", user);
+        LOG.info("save new user = {}", user);
         try (Connection connection = connectionService.getConnection()) {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("INSERT INTO users (id, login, password, first_name, last_name, age) VALUES (null, ?, ?, ?, ?, ?);"
@@ -39,5 +39,24 @@ public class UserDaoImpl implements UserDao {
             LOG.error("Can't save a new user = {}. {}", user, e.getMessage());
         }
         return 0L;
+    }
+
+    @Override
+    public boolean isUserExist(String login) {
+        LOG.info("isUserExist for login = {}", login);
+        try (Connection connection = connectionService.getConnection()) {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("select * from users where login = ?;");
+            preparedStatement.setString(1, login);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            boolean next = resultSet.next();
+            if (next) {
+                return true;
+            }
+        } catch (SQLException e) {
+            LOG.error("Can't find a user with same login {}. {}", login, e.getMessage());
+        }
+        return false;
     }
 }

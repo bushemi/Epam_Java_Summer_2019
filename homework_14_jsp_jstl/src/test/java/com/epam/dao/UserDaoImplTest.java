@@ -47,4 +47,22 @@ public class UserDaoImplTest {
         verify(statement).getGeneratedKeys();
         verify(resultSet).next();
     }
+
+    @Test
+    public void isUserExist() throws SQLException {
+        //GIVEN
+        when(connectors.getConnection()).thenReturn(connection);
+        when(connection.prepareStatement("select * from users where login = ?;"))
+                .thenReturn(statement);
+        when(statement.executeQuery()).thenReturn(resultSet);
+
+        //WHEN
+        userDao.isUserExist("user");
+
+        //THEN
+        verify(connectors).getConnection();
+        verify(connection).prepareStatement("select * from users where login = ?;");
+        verify(statement).executeQuery();
+        verify(resultSet).next();
+    }
 }
