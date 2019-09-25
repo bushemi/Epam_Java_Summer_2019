@@ -2,19 +2,17 @@ package com.epam.dao;
 
 import java.util.Objects;
 
-public class User {
-    private Long id;
+public class UserCreating {
     private String login;
     private String password;
     private String firstName;
     private String lastName;
     private Integer age;
 
-    public User() {
+    public UserCreating() {
     }
 
-    public User(Long id, String login, String password, String firstName, String lastName, Integer age) {
-        this.id = id;
+    public UserCreating(String login, String password, String firstName, String lastName, Integer age) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
@@ -22,21 +20,6 @@ public class User {
         this.age = age;
     }
 
-    public User(String login, String password, String firstName, String lastName, Integer age) {
-        this.login = login;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getLogin() {
         return login;
@@ -81,10 +64,9 @@ public class User {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return Objects.equals(getId(), user.getId()) &&
-                Objects.equals(getLogin(), user.getLogin()) &&
+        if (!(o instanceof UserCreating)) return false;
+        UserCreating user = (UserCreating) o;
+        return Objects.equals(getLogin(), user.getLogin()) &&
                 Objects.equals(getPassword(), user.getPassword()) &&
                 Objects.equals(getFirstName(), user.getFirstName()) &&
                 Objects.equals(getLastName(), user.getLastName()) &&
@@ -93,14 +75,13 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getLogin(), getPassword(), getFirstName(), getLastName(), getAge());
+        return Objects.hash(getLogin(), getPassword(), getFirstName(), getLastName(), getAge());
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
+        return "UserCreating{" +
+                "login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
