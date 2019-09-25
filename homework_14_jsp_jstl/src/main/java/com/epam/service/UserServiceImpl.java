@@ -19,4 +19,9 @@ public class UserServiceImpl implements UserService {
     public void save(UserCreating user) {
         userDao.save(user);
     }
+
+    @Override
+    public boolean isUserExist(String login) {
+        return userDao.isUserExist(login);
+    }
 }

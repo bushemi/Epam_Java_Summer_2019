@@ -29,4 +29,13 @@ public class UserServiceImplTest {
         //THEN
         verify(dao).save(user);
     }
+
+    @Test
+    public void isUserExist() {
+        //WHEN
+        userService.isUserExist("user");
+
+        //THEN
+        verify(dao).isUserExist("user");
+    }
 }
