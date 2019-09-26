@@ -2,6 +2,8 @@ package com.epam.service;
 
 import com.epam.dao.UserCreating;
 
+import static java.util.Objects.isNull;
+
 public class UserParserService {
 
     private static final String DELIMITER_FOR_PARAMETERS = "&";
@@ -18,7 +20,7 @@ public class UserParserService {
 
     private void recognizeParameterAndIncludeItToUser(UserCreating user, String pair) {
         String[] strings = pair.split(DELIMITER_FOR_PAIRS);
-        String value = strings[1].trim();
+        String value = strings.length > 1 ? strings[1].trim() : null;
         if (pair.contains("login")) {
             user.setLogin(valueIfPresentOrNull(value));
             return;
@@ -46,7 +48,7 @@ public class UserParserService {
 
     private void includeAgeFromValueToUser(UserCreating user, String value) {
         if (isValueNull(value)) {
-            user.setAge(null);
+            user.setAge(0);
         } else {
             int age;
             try {
@@ -59,6 +61,6 @@ public class UserParserService {
     }
 
     private boolean isValueNull(String value) {
-        return value.equalsIgnoreCase("null") || value.isEmpty();
+        return isNull(value) || value.equalsIgnoreCase("null") || value.isEmpty();
     }
 }
