@@ -1,0 +1,43 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+    http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0" metadata-complete="false">
+
+
+    <servlet>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>com.epam.web.servlets.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/users/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>indexPage</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>indexPage</servlet-name>
+        <url-pattern>/start</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>registration</servlet-name>
+        <jsp-file>/registration.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>registration</servlet-name>
+        <url-pattern>/registration</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ErrorPage</servlet-name>
+        <jsp-file>/error.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ErrorPage</servlet-name>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
+
+</web-app>
