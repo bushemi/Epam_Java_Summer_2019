@@ -2,12 +2,10 @@ package com.bushemi.web.filters;
 
 import com.bushemi.model.SubjectDto;
 import com.bushemi.model.TestForSessionDto;
-import com.bushemi.service.implementations.SubjectServiceImpl;
-import com.bushemi.service.implementations.TestServiceImpl;
 import com.bushemi.service.interfaces.SubjectService;
 import com.bushemi.service.interfaces.TestService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -18,10 +16,16 @@ import java.util.List;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
+@Component
 public class EditTestFilter implements Filter {
-    private static final Logger LOG = LoggerFactory.getLogger("EditTestFilter");
-    private final SubjectService subjectService = new SubjectServiceImpl();
-    private final TestService testService = new TestServiceImpl();
+    @Autowired
+    private SubjectService subjectService;
+    @Autowired
+    private TestService testService;
+
+    public EditTestFilter() {
+
+    }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

@@ -2,6 +2,7 @@ package com.bushemi.web.filters;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 import static java.util.Objects.nonNull;
-
+@Component
 public class LogOutFilter implements Filter {
     private static final Logger LOG = LoggerFactory.getLogger("LogOutFilter");
 

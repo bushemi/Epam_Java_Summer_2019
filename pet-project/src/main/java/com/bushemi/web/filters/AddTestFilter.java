@@ -1,8 +1,8 @@
 package com.bushemi.web.filters;
 
 import com.bushemi.model.SubjectDto;
-import com.bushemi.service.implementations.SubjectServiceImpl;
 import com.bushemi.service.interfaces.SubjectService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +10,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class AddTestFilter implements Filter {
-    private final SubjectService service = new SubjectServiceImpl();
+    @Autowired
+    private SubjectService service;
 
     @Override
     public void init(FilterConfig filterConfig) {
