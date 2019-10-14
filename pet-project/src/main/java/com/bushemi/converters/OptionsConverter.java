@@ -2,7 +2,9 @@ package com.bushemi.converters;
 
 import com.bushemi.dao.entity.Option;
 import com.bushemi.model.OptionForSessionDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OptionsConverter {
 
     public OptionForSessionDto optionToOptionForSessionDto(Option option) {

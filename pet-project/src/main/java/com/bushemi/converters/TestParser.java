@@ -1,10 +1,11 @@
 package com.bushemi.converters;
 
 import com.bushemi.dao.entity.Test;
+import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-
+@Component
 public class TestParser {
     public Test fromString(String text) {
         Test testEntity = new Test();

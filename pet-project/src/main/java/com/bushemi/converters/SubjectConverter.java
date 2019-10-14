@@ -2,7 +2,9 @@ package com.bushemi.converters;
 
 import com.bushemi.dao.entity.Subject;
 import com.bushemi.model.SubjectDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SubjectConverter {
     public SubjectDto subjectToSubjectDto(Subject subject) {
         SubjectDto subj = new SubjectDto();

@@ -4,9 +4,10 @@ import com.bushemi.dao.entity.Subject;
 import com.bushemi.dao.entity.Test;
 import com.bushemi.model.TestForSessionDto;
 import com.bushemi.model.TestForTestsPage;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
-
+@Component
 public class TestConverter {
 
     private static final double SECONDS_IN_MINUTE = 60d;

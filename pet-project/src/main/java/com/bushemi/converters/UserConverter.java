@@ -10,10 +10,17 @@ import com.bushemi.dao.interfaces.RoleDao;
 import com.bushemi.model.UserCreatingDto;
 import com.bushemi.model.UserForSessionDto;
 import com.bushemi.service.implementations.DbConnectionPoolServiceImpl;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserConverter {
-    private LocaleDao localeDao = new LocaleCachedDaoImpl(DbConnectionPoolServiceImpl.getInstance());
-    private RoleDao roleDao = new RoleCachedDaoImpl(DbConnectionPoolServiceImpl.getInstance());
+    private LocaleDao localeDao ;
+    private RoleDao roleDao;
+
+    public UserConverter(LocaleDao localeDao, RoleDao roleDao) {
+        this.localeDao = localeDao;
+        this.roleDao = roleDao;
+    }
 
     private static final long RU = 1L;
     private static final long STUDENT = 1L;
