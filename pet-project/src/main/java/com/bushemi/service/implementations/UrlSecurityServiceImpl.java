@@ -3,11 +3,12 @@ package com.bushemi.service.implementations;
 import com.bushemi.service.interfaces.UrlSecurityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 import static java.util.Objects.isNull;
-
+@Service
 public class UrlSecurityServiceImpl implements UrlSecurityService {
     private static final Logger LOG = LoggerFactory.getLogger("UrlSecurityServiceImpl");
     private static final String GET = "get";

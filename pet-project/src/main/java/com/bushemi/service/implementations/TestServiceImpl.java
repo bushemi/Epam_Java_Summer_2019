@@ -3,33 +3,33 @@ package com.bushemi.service.implementations;
 import com.bushemi.converters.TestConverter;
 import com.bushemi.dao.entity.Subject;
 import com.bushemi.dao.entity.Test;
-import com.bushemi.dao.implementations.SubjectDaoImpl;
-import com.bushemi.dao.implementations.TestDaoImpl;
 import com.bushemi.dao.interfaces.SubjectDao;
 import com.bushemi.dao.interfaces.TestDao;
 import com.bushemi.exceptions.DbException;
 import com.bushemi.model.TestForSessionDto;
 import com.bushemi.model.TestForTestsPage;
-import com.bushemi.service.interfaces.DbConnectionService;
 import com.bushemi.service.interfaces.TestService;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Service
 public class TestServiceImpl implements TestService {
-    private DbConnectionService dbConnectionService = DbConnectionPoolServiceImpl.getInstance();
-    private final TestDao testDao = new TestDaoImpl(dbConnectionService);
-    private final SubjectDao subjectDao = new SubjectDaoImpl(dbConnectionService);
-    private final TestConverter testConverter = new TestConverter();
+    private TestDao testDao;
+    private SubjectDao subjectDao;
+    private TestConverter testConverter;
 
-    public TestServiceImpl(DbConnectionService dbConnectionService) {
-        this.dbConnectionService = dbConnectionService;
+    public TestServiceImpl(TestDao testDao,
+                           SubjectDao subjectDao,
+                           TestConverter testConverter) {
+        this.testDao = testDao;
+        this.subjectDao = subjectDao;
+        this.testConverter = testConverter;
     }
 
-    public TestServiceImpl() {
-    }
 
     @Override
     public List<TestForTestsPage> findAllTests() {

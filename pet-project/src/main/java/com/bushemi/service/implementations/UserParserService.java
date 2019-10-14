@@ -1,9 +1,10 @@
 package com.bushemi.service.implementations;
 
 import com.bushemi.model.UserCreatingDto;
+import org.springframework.stereotype.Service;
 
 import static java.util.Objects.isNull;
-
+@Service
 public class UserParserService {
 
     private static final String DELIMITER_FOR_PARAMETERS = "&";

@@ -4,6 +4,7 @@ import com.bushemi.exceptions.DbConnectionException;
 import com.bushemi.service.interfaces.DbConnectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 import static java.util.Objects.isNull;
 
+@Service
 public class DbConnectionPoolServiceImpl implements DbConnectionService {
     private static final Logger LOG = LoggerFactory.getLogger("DbConnectionService");
     private static final int DEFAULT_CONNECTIONS_QUANTITY = 10;

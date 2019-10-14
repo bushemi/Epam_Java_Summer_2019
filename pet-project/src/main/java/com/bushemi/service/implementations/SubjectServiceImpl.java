@@ -2,24 +2,22 @@ package com.bushemi.service.implementations;
 
 import com.bushemi.converters.SubjectConverter;
 import com.bushemi.dao.entity.Subject;
-import com.bushemi.dao.implementations.SubjectDaoImpl;
 import com.bushemi.dao.interfaces.SubjectDao;
 import com.bushemi.model.SubjectDto;
-import com.bushemi.service.interfaces.DbConnectionService;
 import com.bushemi.service.interfaces.SubjectService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class SubjectServiceImpl implements SubjectService {
-    private DbConnectionService dbConnectionService = DbConnectionPoolServiceImpl.getInstance();
-    private SubjectDao subjectDao = new SubjectDaoImpl(dbConnectionService);
-    private SubjectConverter subjectConverter = new SubjectConverter();
 
-    public SubjectServiceImpl() {
-    }
+    private SubjectDao subjectDao;
+    private SubjectConverter subjectConverter;
 
-    public SubjectServiceImpl(SubjectDao subjectDao, SubjectConverter subjectConverter) {
+    public SubjectServiceImpl(SubjectDao subjectDao,
+                              SubjectConverter subjectConverter) {
         this.subjectDao = subjectDao;
         this.subjectConverter = subjectConverter;
     }

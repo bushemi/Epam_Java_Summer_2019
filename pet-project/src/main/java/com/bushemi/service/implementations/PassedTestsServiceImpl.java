@@ -2,21 +2,26 @@ package com.bushemi.service.implementations;
 
 import com.bushemi.converters.PassedTestConverter;
 import com.bushemi.dao.entity.PassedTest;
-import com.bushemi.dao.implementations.PassedTestDaoImpl;
 import com.bushemi.dao.interfaces.PassedTestDao;
 import com.bushemi.model.PassedTestForSessionDto;
-import com.bushemi.service.interfaces.DbConnectionService;
 import com.bushemi.service.interfaces.PassedTestsService;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static java.util.Objects.isNull;
 
+@Service
 public class PassedTestsServiceImpl implements PassedTestsService {
-    private DbConnectionService dbConnectionService = DbConnectionPoolServiceImpl.getInstance();
-    private PassedTestDao passedTestDao = new PassedTestDaoImpl(dbConnectionService);
-    private PassedTestConverter passedTestConverter = new PassedTestConverter();
+    private PassedTestDao passedTestDao;
+    private PassedTestConverter passedTestConverter;
+
+    public PassedTestsServiceImpl(PassedTestDao passedTestDao,
+                                  PassedTestConverter passedTestConverter) {
+        this.passedTestDao = passedTestDao;
+        this.passedTestConverter = passedTestConverter;
+    }
 
     @Override
     public void save(PassedTest passedTest) {

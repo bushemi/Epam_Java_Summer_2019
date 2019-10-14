@@ -3,11 +3,12 @@ package com.bushemi.service.implementations;
 import com.bushemi.service.interfaces.DbConnectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-
+@Service
 public class PropertiesLoaderService {
     private static final Logger LOG = LoggerFactory.getLogger("PropertiesLoaderService");
     private static final String PROPERTY_FILE_NAME = "application.properties";

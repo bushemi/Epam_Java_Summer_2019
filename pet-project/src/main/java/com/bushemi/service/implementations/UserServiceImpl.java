@@ -8,7 +8,9 @@ import com.bushemi.model.UserCreatingDto;
 import com.bushemi.model.UserForSessionDto;
 import com.bushemi.service.interfaces.DbConnectionService;
 import com.bushemi.service.interfaces.UserService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     private DbConnectionService dbConnectionService = DbConnectionPoolServiceImpl.getInstance();
