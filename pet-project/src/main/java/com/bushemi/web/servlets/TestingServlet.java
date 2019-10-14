@@ -8,6 +8,7 @@ import com.bushemi.service.interfaces.QuestionService;
 import com.bushemi.service.interfaces.TestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +21,17 @@ import java.util.Date;
 import java.util.List;
 
 import static java.util.Objects.nonNull;
-
+@Component
 public class TestingServlet extends HttpServlet {
     private static final Logger LOG = LoggerFactory.getLogger("TestingServlet");
-    private final TestService testService = new TestServiceImpl();
-    private final QuestionService questionService = new QuestionServiceImpl();
+    private final TestService testService ;
+    private final QuestionService questionService ;
+
+    public TestingServlet(TestService testService,
+                          QuestionService questionService) {
+        this.testService = testService;
+        this.questionService = questionService;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {

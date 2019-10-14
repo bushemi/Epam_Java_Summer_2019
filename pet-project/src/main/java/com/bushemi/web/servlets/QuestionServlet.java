@@ -7,6 +7,7 @@ import com.bushemi.service.implementations.PassedTestsServiceImpl;
 import com.bushemi.service.interfaces.PassedTestsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,11 +22,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.Objects.nonNull;
-
+@Component
 public class QuestionServlet extends HttpServlet {
     private static final Logger LOG = LoggerFactory.getLogger("QuestionServlet");
-    private final PassedTestsService passedTestsService = new PassedTestsServiceImpl();
+    private final PassedTestsService passedTestsService;
     private static final String COUNT_RIGHT_ANSWERS = "countRightAnswers";
+
+    public QuestionServlet(PassedTestsService passedTestsService) {
+        this.passedTestsService = passedTestsService;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {

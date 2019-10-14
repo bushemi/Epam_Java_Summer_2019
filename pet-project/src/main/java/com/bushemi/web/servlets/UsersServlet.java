@@ -2,11 +2,11 @@ package com.bushemi.web.servlets;
 
 import com.bushemi.model.UserCreatingDto;
 import com.bushemi.model.UserForSessionDto;
-import com.bushemi.service.interfaces.UserService;
-import com.bushemi.service.implementations.UserServiceImpl;
 import com.bushemi.service.implementations.UserParserService;
+import com.bushemi.service.interfaces.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,10 +18,17 @@ import static com.bushemi.web.servlets.AuthenticationServlet.addUserInformationT
 import static java.util.Objects.nonNull;
 import static javax.servlet.http.HttpServletResponse.SC_OK;
 
+@Component
 public class UsersServlet extends HttpServlet {
     private static final Logger LOG = LoggerFactory.getLogger("UsersServlet");
-    private final UserParserService userParser = new UserParserService();
-    private final UserService userService = new UserServiceImpl();
+    private final UserParserService userParser;
+    private final UserService userService;
+
+    public UsersServlet(UserParserService userParser,
+                        UserService userService) {
+        this.userParser = userParser;
+        this.userService = userService;
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {

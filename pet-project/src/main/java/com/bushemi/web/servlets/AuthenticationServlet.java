@@ -2,11 +2,11 @@ package com.bushemi.web.servlets;
 
 import com.bushemi.model.UserCreatingDto;
 import com.bushemi.model.UserForSessionDto;
-import com.bushemi.service.implementations.SecurityServiceImpl;
 import com.bushemi.service.implementations.UserParserService;
 import com.bushemi.service.interfaces.SecurityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,10 +16,17 @@ import java.io.IOException;
 
 import static java.util.Objects.nonNull;
 
+@Component
 public class AuthenticationServlet extends HttpServlet {
     private static final Logger LOG = LoggerFactory.getLogger("AuthenticationServlet");
-    private final UserParserService userParserService = new UserParserService();
-    private final SecurityService securityService = new SecurityServiceImpl();
+    private final UserParserService userParserService;
+    private final SecurityService securityService;
+
+    public AuthenticationServlet(UserParserService userParserService,
+                                 SecurityService securityService) {
+        this.userParserService = userParserService;
+        this.securityService = securityService;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {

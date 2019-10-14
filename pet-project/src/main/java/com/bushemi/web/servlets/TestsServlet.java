@@ -4,12 +4,11 @@ import com.bushemi.converters.TestParser;
 import com.bushemi.dao.entity.Test;
 import com.bushemi.model.PassedTestForSessionDto;
 import com.bushemi.model.TestForTestsPage;
-import com.bushemi.service.implementations.PassedTestsServiceImpl;
-import com.bushemi.service.implementations.TestServiceImpl;
 import com.bushemi.service.interfaces.PassedTestsService;
 import com.bushemi.service.interfaces.TestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,11 +21,20 @@ import java.util.Set;
 
 import static java.util.Objects.nonNull;
 
+@Component
 public class TestsServlet extends HttpServlet {
     private static final Logger LOG = LoggerFactory.getLogger("TestsServlet");
-    private final TestService testService = new TestServiceImpl();
-    private final PassedTestsService passedTestsService = new PassedTestsServiceImpl();
-    private final TestParser testParser = new TestParser();
+    private final TestService testService;
+    private final PassedTestsService passedTestsService;
+    private final TestParser testParser;
+
+    public TestsServlet(TestService testService,
+                        PassedTestsService passedTestsService,
+                        TestParser testParser) {
+        this.testService = testService;
+        this.passedTestsService = passedTestsService;
+        this.testParser = testParser;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
