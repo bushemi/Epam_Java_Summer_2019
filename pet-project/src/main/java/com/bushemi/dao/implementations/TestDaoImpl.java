@@ -5,11 +5,12 @@ import com.bushemi.dao.interfaces.TestDao;
 import com.bushemi.service.interfaces.DbConnectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+@Repository
 public class TestDaoImpl extends AbstractDao<Test> implements TestDao {
     private static final Logger LOG = LoggerFactory.getLogger("TestDaoImpl");
 

@@ -5,10 +5,11 @@ import com.bushemi.dao.interfaces.RoleDao;
 import com.bushemi.service.interfaces.DbConnectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+@Repository
 public class RoleDaoImpl extends AbstractDictionaryDao<Role> implements RoleDao {
     private static final Logger LOG = LoggerFactory.getLogger("RoleDaoImpl");
 

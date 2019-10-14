@@ -5,11 +5,12 @@ import com.bushemi.dao.interfaces.SubjectDao;
 import com.bushemi.service.interfaces.DbConnectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+@Repository
 public class SubjectDaoImpl extends AbstractDao<Subject> implements SubjectDao {
     private static final Logger LOG = LoggerFactory.getLogger("SubjectDaoImpl");
 

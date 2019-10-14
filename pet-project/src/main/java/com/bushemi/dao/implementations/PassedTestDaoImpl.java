@@ -6,6 +6,7 @@ import com.bushemi.exceptions.DbException;
 import com.bushemi.service.interfaces.DbConnectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class PassedTestDaoImpl extends AbstractDao<PassedTest> implements PassedTestDao {
     private static final Logger LOG = LoggerFactory.getLogger("PassedTestDaoImpl");
     private DbConnectionService dbConnector;
