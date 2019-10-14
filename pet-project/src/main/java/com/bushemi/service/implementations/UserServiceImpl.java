@@ -13,15 +13,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private DbConnectionService dbConnectionService = DbConnectionPoolServiceImpl.getInstance();
-    private UserDao userDao = new UserDaoImpl(dbConnectionService);
-    private UserConverter userConverter = new UserConverter();
+    private UserDao userDao ;
+    private UserConverter userConverter;
 
-    public UserServiceImpl() {
-    }
-
-    public UserServiceImpl(UserDao userDao) {
+    public UserServiceImpl(UserDao userDao, UserConverter userConverter) {
         this.userDao = userDao;
+        this.userConverter = userConverter;
     }
 
     @Override
