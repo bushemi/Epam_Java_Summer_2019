@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 import static java.util.Objects.isNull;
+
 @Service
 public class UrlSecurityServiceImpl implements UrlSecurityService {
     private static final Logger LOG = LoggerFactory.getLogger("UrlSecurityServiceImpl");
@@ -27,7 +28,7 @@ public class UrlSecurityServiceImpl implements UrlSecurityService {
 
     private void initFreeLinksToAnyone() {
         List<String> emptyList = Collections.emptyList();
-        freeLinksToAnyone.put(GET, Arrays.asList("/404", "/login", "/authentication"));
+        freeLinksToAnyone.put(GET, Arrays.asList("/404", "/index", "/login", "/authentication"));
         freeLinksToAnyone.put(POST, Collections.singletonList("/users"));
         freeLinksToAnyone.put(PUT, emptyList);
         freeLinksToAnyone.put(DELETE, emptyList);
@@ -35,7 +36,7 @@ public class UrlSecurityServiceImpl implements UrlSecurityService {
 
     private void initFreeLinksToStudent() {
         List<String> emptyList = Collections.emptyList();
-        freeLinksToStudent.put(GET, Arrays.asList("/404", "/login", "/authentication", "/userProfile"
+        freeLinksToStudent.put(GET, Arrays.asList("/404", "/index", "/login", "/authentication", "/userProfile"
                 , "/testResult", "/question", "/testing", "/tests", "/allTests", "/testToGo", "/navigation"));
         freeLinksToStudent.put(POST, Arrays.asList("/users", "/questions"));
         freeLinksToStudent.put(PUT, emptyList);
@@ -44,7 +45,7 @@ public class UrlSecurityServiceImpl implements UrlSecurityService {
 
     private void initFreeLinksToAdmin() {
         List<String> emptyList = Collections.emptyList();
-        freeLinksToAdmin.put(GET, Arrays.asList("/404", "/login", "/authentication", "/userProfile"
+        freeLinksToAdmin.put(GET, Arrays.asList("/404", "/index", "/login", "/authentication", "/userProfile"
                 , "/testResult", "/question", "/testing", "/tests", "/allTests", "/testToGo", "/navigation",
                 "/allUsers", "/addTest", "/editTest", "/addQuestion"));
         freeLinksToAdmin.put(POST, Arrays.asList("/users", "/questions"));
