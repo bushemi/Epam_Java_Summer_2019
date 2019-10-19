@@ -26,21 +26,33 @@ public class DefaultControllerTest {
     private MockMvc mockMvc;
 
     @Before
-    public void setup() throws Exception {
+    public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
     @Test
     public void index() throws Exception {
         this.mockMvc.perform(get("/index"))
-                .andDo(print())
                 .andExpect(view().name("index"));
     }
 
     @Test
     public void pageNotFound() throws Exception {
         this.mockMvc.perform(get("/404"))
-                .andDo(print())
                 .andExpect(view().name("404"));
+    }
+
+    @Test
+    public void navigation() throws Exception {
+        this.mockMvc.perform(get("/navigation"))
+                .andDo(print())
+                .andExpect(view().name("navigation"));
+    }
+
+    @Test
+    public void login() throws Exception {
+        this.mockMvc.perform(get("/login"))
+                .andDo(print())
+                .andExpect(view().name("login"));
     }
 }

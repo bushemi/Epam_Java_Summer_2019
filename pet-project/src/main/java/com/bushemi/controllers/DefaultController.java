@@ -19,4 +19,14 @@ public class DefaultController {
     public String pageNotFound() {
         return "404";
     }
+
+    @GetMapping("/navigation")
+    public String navigation() {
+        return "navigation";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 }
