@@ -1,13 +1,11 @@
 package com.bushemi;
 
+import com.bushemi.web.interceptors.SecurityInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
@@ -28,6 +26,11 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/views/**").addResourceLocations("/views/");
     }
 
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(getSecurityInterceptor());
+    }
+
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver bean = new InternalResourceViewResolver();
@@ -37,5 +40,10 @@ public class AppConfig implements WebMvcConfigurer {
         bean.setSuffix(".jsp");
 
         return bean;
+    }
+
+    @Bean
+    public SecurityInterceptor getSecurityInterceptor() {
+        return new SecurityInterceptor();
     }
 }
