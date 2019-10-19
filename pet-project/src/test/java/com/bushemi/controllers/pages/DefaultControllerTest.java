@@ -1,10 +1,11 @@
-package com.bushemi.controllers;
+package com.bushemi.controllers.pages;
 
 import com.bushemi.AppConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -43,8 +44,19 @@ public class DefaultControllerTest {
     }
 
     @Test
-    public void navigation() throws Exception {
-        this.mockMvc.perform(get("/navigation"))
+    public void navigationStudent() throws Exception {
+        MockHttpSession session = new MockHttpSession();
+        session.setAttribute("role", "student");
+        this.mockMvc.perform(get("/navigation").session(session))
+                .andDo(print())
+                .andExpect(view().name("navigation"));
+    }
+
+    @Test
+    public void navigationAdmin() throws Exception {
+        MockHttpSession session = new MockHttpSession();
+        session.setAttribute("role", "admin");
+        this.mockMvc.perform(get("/navigation").session(session))
                 .andDo(print())
                 .andExpect(view().name("navigation"));
     }
