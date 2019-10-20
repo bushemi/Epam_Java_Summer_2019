@@ -1,5 +1,6 @@
 package com.bushemi;
 
+import com.bushemi.web.interceptors.LogoutInterceptor;
 import com.bushemi.web.interceptors.SecurityInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -29,6 +30,7 @@ public class AppConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(getSecurityInterceptor());
+        registry.addInterceptor(getLogoutInterceptor());
     }
 
     @Bean
@@ -45,5 +47,10 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public SecurityInterceptor getSecurityInterceptor() {
         return new SecurityInterceptor();
+    }
+
+    @Bean
+    public LogoutInterceptor getLogoutInterceptor() {
+        return new LogoutInterceptor();
     }
 }
