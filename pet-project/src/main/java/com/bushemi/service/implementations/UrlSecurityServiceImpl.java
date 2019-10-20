@@ -28,27 +28,27 @@ public class UrlSecurityServiceImpl implements UrlSecurityService {
 
     private void initFreeLinksToAnyone() {
         List<String> emptyList = Collections.emptyList();
-        freeLinksToAnyone.put(GET, Arrays.asList("/404", "/index", "/login", "/authentication"));
-        freeLinksToAnyone.put(POST, Collections.singletonList("/users"));
+        freeLinksToAnyone.put(GET, Arrays.asList("/404", "/index", "/login"));
+        freeLinksToAnyone.put(POST, Arrays.asList("/users", "/authentication"));
         freeLinksToAnyone.put(PUT, emptyList);
         freeLinksToAnyone.put(DELETE, emptyList);
     }
 
     private void initFreeLinksToStudent() {
         List<String> emptyList = Collections.emptyList();
-        freeLinksToStudent.put(GET, Arrays.asList("/404", "/index", "/login", "/authentication", "/userProfile"
+        freeLinksToStudent.put(GET, Arrays.asList("/404", "/index", "/login", "/userProfile"
                 , "/testResult", "/testing", "/testInProcess", "/tests", "/allTests", "/testToGo", "/navigation"));
-        freeLinksToStudent.put(POST, Arrays.asList("/users", "/questions"));
+        freeLinksToStudent.put(POST, Arrays.asList("/users", "/questions", "/authentication"));
         freeLinksToStudent.put(PUT, emptyList);
         freeLinksToStudent.put(DELETE, emptyList);
     }
 
     private void initFreeLinksToAdmin() {
         List<String> emptyList = Collections.emptyList();
-        freeLinksToAdmin.put(GET, Arrays.asList("/404", "/index", "/login", "/authentication", "/userProfile"
+        freeLinksToAdmin.put(GET, Arrays.asList("/404", "/index", "/login", "/userProfile"
                 , "/testResult", "/testing", "/testInProcess", "/tests", "/allTests", "/testToGo", "/navigation"
                 , "/question", "/allUsers", "/addTest", "/editTest", "/addQuestion"));
-        freeLinksToAdmin.put(POST, Arrays.asList("/users", "/questions"));
+        freeLinksToAdmin.put(POST, Arrays.asList("/users", "/questions", "/authentication"));
         freeLinksToAdmin.put(PUT, emptyList);
         freeLinksToAdmin.put(DELETE, emptyList);
     }
