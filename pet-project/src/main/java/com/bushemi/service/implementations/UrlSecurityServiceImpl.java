@@ -37,7 +37,7 @@ public class UrlSecurityServiceImpl implements UrlSecurityService {
     private void initFreeLinksToStudent() {
         List<String> emptyList = Collections.emptyList();
         freeLinksToStudent.put(GET, Arrays.asList("/404", "/index", "/login", "/authentication", "/userProfile"
-                , "/testResult", "/testing", "/tests", "/allTests", "/testToGo", "/navigation"));
+                , "/testResult", "/testing", "/testInProcess", "/tests", "/allTests", "/testToGo", "/navigation"));
         freeLinksToStudent.put(POST, Arrays.asList("/users", "/questions"));
         freeLinksToStudent.put(PUT, emptyList);
         freeLinksToStudent.put(DELETE, emptyList);
@@ -46,8 +46,8 @@ public class UrlSecurityServiceImpl implements UrlSecurityService {
     private void initFreeLinksToAdmin() {
         List<String> emptyList = Collections.emptyList();
         freeLinksToAdmin.put(GET, Arrays.asList("/404", "/index", "/login", "/authentication", "/userProfile"
-                , "/testResult", "/question", "/testing", "/tests", "/allTests", "/testToGo", "/navigation",
-                "/allUsers", "/addTest", "/editTest", "/addQuestion"));
+                , "/testResult", "/testing", "/testInProcess", "/tests", "/allTests", "/testToGo", "/navigation"
+                , "/question", "/allUsers", "/addTest", "/editTest", "/addQuestion"));
         freeLinksToAdmin.put(POST, Arrays.asList("/users", "/questions"));
         freeLinksToAdmin.put(PUT, emptyList);
         freeLinksToAdmin.put(DELETE, emptyList);
