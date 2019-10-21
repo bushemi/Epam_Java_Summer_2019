@@ -20,7 +20,7 @@ public class LogoutInterceptor implements HandlerInterceptor {
             HttpSession session = request.getSession(true);
             if (nonNull(session.getAttribute("role"))) {
                 LOG.info("log out by session id {}", session.getId());
-                session.setAttribute("role", null);
+                session.invalidate();
             }
         }
         return true;
