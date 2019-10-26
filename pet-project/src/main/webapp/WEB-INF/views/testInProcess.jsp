@@ -56,6 +56,10 @@
           }
         });
       }
+      
+      function toMainMenu() {
+        window.location.href = "navigation";
+      }
     </script>
     <style>
         .timerClass {
