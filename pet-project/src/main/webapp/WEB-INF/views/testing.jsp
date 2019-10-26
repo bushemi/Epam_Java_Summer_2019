@@ -24,7 +24,7 @@
       }
       
       function startTest() {
-        window.location.href = "/questions";
+        window.location.href = "/testInProcess";
       }
       
     </script>
