@@ -1,5 +1,6 @@
 package com.bushemi.controllers;
 
+import com.bushemi.annotations.Timed;
 import com.bushemi.model.RedirectResponse;
 import com.bushemi.model.UserCreatingDto;
 import com.bushemi.model.UserForSessionDto;
@@ -15,17 +16,16 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping
+@Timed
 public class UserController {
     private static final Logger LOG = LoggerFactory.getLogger("UserController");
     private static final String LOGIN_PAGE = "/login";
-
-    private final SecurityService securityService;
-    private final UserService userService;
-
     @Autowired
-    public UserController(SecurityService securityService, UserService userService) {
-        this.securityService = securityService;
-        this.userService = userService;
+    private SecurityService securityService;
+    @Autowired
+    private UserService userService;
+
+    public UserController() {
     }
 
     @GetMapping("/userProfile")
@@ -75,7 +75,7 @@ public class UserController {
         session.setAttribute("passwordError", "Проверьте пароль");
     }
 
-    static void addUserInformationToSession(HttpSession session, UserForSessionDto userForSessionDto) {
+    private static void addUserInformationToSession(HttpSession session, UserForSessionDto userForSessionDto) {
         session.setAttribute("login", userForSessionDto.getLogin());
         session.setAttribute("locale", userForSessionDto.getLocale().getShortName());
         session.setAttribute("role", userForSessionDto.getRole().getRoleName());

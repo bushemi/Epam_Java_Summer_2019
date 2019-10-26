@@ -1,5 +1,6 @@
 package com.bushemi.service.implementations;
 
+import com.bushemi.annotations.Timed;
 import com.bushemi.converters.TestConverter;
 import com.bushemi.dao.entity.Subject;
 import com.bushemi.dao.entity.Test;
@@ -9,6 +10,7 @@ import com.bushemi.exceptions.DbException;
 import com.bushemi.model.TestForSessionDto;
 import com.bushemi.model.TestForTestsPage;
 import com.bushemi.service.interfaces.TestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -17,18 +19,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
+@Timed
 public class TestServiceImpl implements TestService {
+    @Autowired
     private TestDao testDao;
+    @Autowired
     private SubjectDao subjectDao;
+    @Autowired
     private TestConverter testConverter;
-
-    public TestServiceImpl(TestDao testDao,
-                           SubjectDao subjectDao,
-                           TestConverter testConverter) {
-        this.testDao = testDao;
-        this.subjectDao = subjectDao;
-        this.testConverter = testConverter;
-    }
 
 
     @Override
