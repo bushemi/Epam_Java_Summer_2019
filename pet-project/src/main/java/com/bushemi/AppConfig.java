@@ -1,5 +1,6 @@
 package com.bushemi;
 
+import com.bushemi.bpp.TimedBeanPostProcessor;
 import com.bushemi.web.interceptors.LogoutInterceptor;
 import com.bushemi.web.interceptors.SecurityInterceptor;
 import org.springframework.context.annotation.Bean;
@@ -42,6 +43,11 @@ public class AppConfig implements WebMvcConfigurer {
         bean.setSuffix(".jsp");
 
         return bean;
+    }
+
+    @Bean
+    public TimedBeanPostProcessor getTimedBeanPostProcessor() {
+        return new TimedBeanPostProcessor();
     }
 
     @Bean
