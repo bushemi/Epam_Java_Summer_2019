@@ -1,0 +1,1 @@
+Rewrite pet project from servlets to spring with java config(without xml).
