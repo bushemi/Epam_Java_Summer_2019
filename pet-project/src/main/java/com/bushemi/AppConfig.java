@@ -6,17 +6,16 @@ import com.bushemi.web.interceptors.SecurityInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
-@ComponentScan(value = {"com.bushemi.converters",
-        "com.bushemi.dao",
-        "com.bushemi.service",
-        "com.bushemi.controllers"})
+@ComponentScan(value = {"com.bushemi"})
 @EnableWebMvc
+@EnableAspectJAutoProxy
 public class AppConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
