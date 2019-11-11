@@ -45,10 +45,10 @@ public class AppConfig implements WebMvcConfigurer {
         return bean;
     }
 
-    @Bean
-    public TimedBeanPostProcessor getTimedBeanPostProcessor() {
-        return new TimedBeanPostProcessor();
-    }
+//    @Bean
+//    public TimedBeanPostProcessor getTimedBeanPostProcessor() {
+//        return new TimedBeanPostProcessor();
+//    }
 
     @Bean
     public SecurityInterceptor getSecurityInterceptor() {
