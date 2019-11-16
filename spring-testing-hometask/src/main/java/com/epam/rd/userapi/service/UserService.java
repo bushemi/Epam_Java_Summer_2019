@@ -25,8 +25,12 @@ public class UserService {
     @Value("${user.service.baseUrl}")
     private String serviceBaseUrl;
 
+    private final RestTemplate restTemplate;
+
     @Autowired
-    private RestTemplate restTemplate;
+    public UserService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     public Collection<UserResponse> getAllUsers() {
         URI serviceUri = URI.create(serviceBaseUrl + USER_PATH);
