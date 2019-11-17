@@ -1,0 +1,28 @@
+stages:
+  - build
+  - test
+
+cache:
+  paths:
+    - .m2/repository/
+    - target/
+
+.maven_job_template: &maven_job_template
+  image: maven:latest
+  variables:
+    MAVEN_CLI_OPTS: "--batch-mode"
+    MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+build:
+  stage: build
+  <<: *maven_job_template
+  script:
+    - cd ./homework_20
+    - mvn $MAVEN_CLI_OPTS clean package
+
+test:
+  stage: test
+  <<: *maven_job_template
+  script:
+  - cd ./homework_20
+  - mvn $MAVEN_CLI_OPTS test
