@@ -17,12 +17,13 @@ build:
   stage: build
   <<: *maven_job_template
   script:
-    - cd ./homework_20
+    - cd ./spring-testing-task
+
     - mvn $MAVEN_CLI_OPTS clean package
 
 test:
   stage: test
   <<: *maven_job_template
   script:
-  - cd ./homework_20
+    - cd ./spring-testing-task
   - mvn $MAVEN_CLI_OPTS test
