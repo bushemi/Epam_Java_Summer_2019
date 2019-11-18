@@ -1,0 +1,1 @@
+Implement exception handler in your pet project using <b>@ControllerAdvice</b>
