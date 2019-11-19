@@ -1,4 +1,4 @@
-package com.bushemi.converters;
+package com.bushemi.controllers;
 
 import com.bushemi.model.Response;
 import org.springframework.web.bind.annotation.ControllerAdvice;
