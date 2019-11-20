@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 
-public class TestControllerTest extends BasicSpringTest {
+public class TestProcessingControllerIT extends BasicSpringTest {
 
     @Autowired
     private WebApplicationContext wac;
@@ -27,75 +27,73 @@ public class TestControllerTest extends BasicSpringTest {
     }
 
     @Test
-    public void addTestShouldFail() throws Exception {
-        this.mockMvc.perform(get("/addTest"))
+    @Ignore
+    public void testingShouldFail() throws Exception {
+        this.mockMvc.perform(get("/testing"))
+                .andExpect(status().is(404));
+    }
+
+    @Test
+    public void testInProcessShouldFail() throws Exception {
+        this.mockMvc.perform(get("/testInProcess"))
+                .andExpect(status().is(302));
+    }
+
+    @Test
+    public void testResultShouldFail() throws Exception {
+        this.mockMvc.perform(get("/testResult"))
                 .andExpect(status().is(302));
     }
 
     @Test
     @Ignore
-    public void editTestShouldFail() throws Exception {
-        this.mockMvc.perform(get("/editTest"))
-                .andExpect(status().is(302));
-    }
-
-    @Test
-    public void testsShouldFail() throws Exception {
-        this.mockMvc.perform(get("/tests"))
-                .andExpect(status().is(302));
-    }
-
-    @Test
-    public void addTestStudentShouldFail() throws Exception {
+    public void testingStudent() throws Exception {
         MockHttpSession session = new MockHttpSession();
         session.setAttribute("role", "student");
-        this.mockMvc.perform(get("/addTest").session(session))
-                .andExpect(status().is(302));
+        this.mockMvc.perform(get("/testing").session(session))
+                .andExpect(view().name("testing"));
     }
-
 
     @Test
     @Ignore
-    public void editTestStudentShouldFail() throws Exception {
+    public void testInProcessStudent() throws Exception {
         MockHttpSession session = new MockHttpSession();
         session.setAttribute("role", "student");
-        this.mockMvc.perform(get("/editTest").session(session))
-                .andExpect(status().is(302));
+        this.mockMvc.perform(get("/testInProcess").session(session))
+                .andExpect(view().name("testInProcess"));
     }
 
     @Test
-    @Ignore
-    public void testsStudent() throws Exception {
+    public void testResultStudent() throws Exception {
         MockHttpSession session = new MockHttpSession();
         session.setAttribute("role", "student");
-        this.mockMvc.perform(get("/tests").session(session))
-                .andExpect(view().name("tests"));
+        this.mockMvc.perform(get("/testResult").session(session))
+                .andExpect(view().name("testResult"));
     }
 
     @Test
     @Ignore
-    public void addTestAdmin() throws Exception {
+    public void testingAdmin() throws Exception {
         MockHttpSession session = new MockHttpSession();
         session.setAttribute("role", "admin");
-        this.mockMvc.perform(get("/addTest").session(session))
-                .andExpect(view().name("addTest"));
+        this.mockMvc.perform(get("/testing").session(session))
+                .andExpect(view().name("testing"));
     }
 
     @Test
     @Ignore
-    public void editTestAdmin() throws Exception {
+    public void testInProcessAdmin() throws Exception {
         MockHttpSession session = new MockHttpSession();
         session.setAttribute("role", "admin");
-        this.mockMvc.perform(get("/editTest").session(session))
-                .andExpect(view().name("editTest"));
+        this.mockMvc.perform(get("/testInProcess").session(session))
+                .andExpect(view().name("testInProcess"));
     }
 
     @Test
-    @Ignore
-    public void testsAdmin() throws Exception {
+    public void testResultAdmin() throws Exception {
         MockHttpSession session = new MockHttpSession();
         session.setAttribute("role", "admin");
-        this.mockMvc.perform(get("/tests").session(session))
-                .andExpect(view().name("tests"));
+        this.mockMvc.perform(get("/testResult").session(session))
+                .andExpect(view().name("testResult"));
     }
 }

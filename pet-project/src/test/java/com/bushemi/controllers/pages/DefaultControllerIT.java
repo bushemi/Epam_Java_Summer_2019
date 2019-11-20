@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 
-public class DefaultControllerTest extends BasicSpringTest {
+public class DefaultControllerIT extends BasicSpringTest {
 
     @Autowired
     private WebApplicationContext wac;
