@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-public class UserControllerIntegrationTest extends BasicSpringTest {
+public class UserControllerIT extends BasicSpringTest {
 
     @Test
     public void getUsers() throws Exception {

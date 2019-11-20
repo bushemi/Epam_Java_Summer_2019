@@ -17,6 +17,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import static org.mockito.Mockito.mock;
+
 @WebAppConfiguration
 @ContextConfiguration(classes = {BasicSpringTest.TestContextConfiguration.class},
         loader = AnnotationConfigWebContextLoader.class)
@@ -39,14 +41,12 @@ public abstract class BasicSpringTest {
     protected static class TestContextConfiguration {
         @Bean
         public MockMvc mockMvc(WebApplicationContext webApplicationContext) {
-            System.out.println("webApplicationContext = " + webApplicationContext);
             return MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         }
 
         @Bean
         public RestTemplate restTemplate() {
-//            return Mockito.mock(RestTemplate.class);
-            return new RestTemplate();
+            return mock(RestTemplate.class);
         }
 
         @Bean
