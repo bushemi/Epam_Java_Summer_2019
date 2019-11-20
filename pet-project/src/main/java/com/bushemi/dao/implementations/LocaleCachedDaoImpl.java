@@ -6,7 +6,6 @@ import com.bushemi.service.interfaces.DbConnectionService;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,9 +19,9 @@ public class LocaleCachedDaoImpl implements LocaleDao {
 
     public LocaleCachedDaoImpl(DbConnectionService dbConnector) {
         this.dbConnector = dbConnector;
+        init();
     }
 
-    @PostConstruct
     private void init() {
         LocaleDao localeDao = new LocaleDaoImpl(dbConnector);
         allLocales = localeDao.findAll();
