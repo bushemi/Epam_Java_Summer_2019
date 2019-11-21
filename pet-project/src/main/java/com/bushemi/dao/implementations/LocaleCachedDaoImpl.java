@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Repository
-@Primary
+//@Repository
+//@Primary
 public class LocaleCachedDaoImpl implements LocaleDao {
     private Map<Long, Locale> localesById = new HashMap<>();
     private List<Locale> allLocales;

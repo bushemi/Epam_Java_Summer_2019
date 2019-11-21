@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Repository
-@Primary
+//@Repository
+//@Primary
 public class RoleCachedDaoImpl implements RoleDao {
     private Map<Long, Role> rolesById = new HashMap<>();
     private List<Role> allRoles;
