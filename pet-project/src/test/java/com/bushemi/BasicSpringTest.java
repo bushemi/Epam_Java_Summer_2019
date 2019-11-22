@@ -1,5 +1,6 @@
 package com.bushemi;
 
+import com.bushemi.service.implementations.DbConnectionPoolServiceImpl;
 import com.bushemi.service.interfaces.DbConnectionService;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public abstract class BasicSpringTest {
         @Bean
         @Primary
         public DbConnectionService objectMapper() {
-            return mock(DbConnectionService.class);
+            return mock(DbConnectionPoolServiceImpl.class);
         }
     }
 }
