@@ -37,11 +37,10 @@ public abstract class BasicSpringTest {
             return MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         }
 
-
         @Bean
         @Primary
-        public DbConnectionService objectMapper() {
-            return mock(DbConnectionPoolServiceImpl.class);
+        public DbConnectionService dbConnectionService() {
+            return mock(DbConnectionService.class);
         }
     }
 }
