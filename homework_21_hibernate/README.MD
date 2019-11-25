@@ -11,3 +11,4 @@ Bidirectional  One-To-Many (Like in Tourist <--> Journey)
 Unidirectional Many-To-One (Like in Journey <-- Country )
 
 4. There should be UnitTests for each operation: Create, Read, Update, Delete
+"Интеграционные, с обращением к БД. Неважно к MariaDB или к H2"
