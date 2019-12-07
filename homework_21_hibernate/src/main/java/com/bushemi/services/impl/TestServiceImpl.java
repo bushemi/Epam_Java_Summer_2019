@@ -40,8 +40,6 @@ public class TestServiceImpl implements TestService {
     public void save(TestDto testDto) {
         Test test = testAssembler.assemble(testDto);
 
-//        saveSubject(test);
-
         testDao.create(test);
     }
 
@@ -63,7 +61,6 @@ public class TestServiceImpl implements TestService {
     public void update(TestDto testDto) {
         Test persistedTest = testDao.read(converter.fromString(testDto.getId()));
         Test newTest = testAssembler.assemble(testDto);
-//        testDao.update(persistedTest);
         performUpdate(persistedTest, newTest);
     }
 
