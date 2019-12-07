@@ -17,12 +17,12 @@ build:
   stage: build
   <<: *maven_job_template
   script:
-    - cd ./homework_21_hibernate
+    - cd ./homework_22_spring-data
     - mvn $MAVEN_CLI_OPTS clean package
 
 test:
   stage: test
   <<: *maven_job_template
   script:
-  - cd ./homework_21_hibernate
+  - cd ./homework_22_spring-data
   - mvn $MAVEN_CLI_OPTS test
