@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class TestDto {
 
-    private UUID id = UUID.randomUUID();
+    private String id;
 
     private SubjectDto subject;
 
@@ -19,24 +19,24 @@ public class TestDto {
     public TestDto() {
     }
 
-    public TestDto(UUID id, SubjectDto subject, String testName, List<QuestionDto> questionDtos) {
+    public TestDto(String id, SubjectDto subject, String testName, List<QuestionDto> questionDtos) {
         this.id = id;
         this.subject = subject;
         this.testName = testName;
         this.questionDtos = questionDtos;
     }
 
-    public TestDto(UUID id, SubjectDto subject, String testName) {
+    public TestDto(String id, SubjectDto subject, String testName) {
         this.id = id;
         this.subject = subject;
         this.testName = testName;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

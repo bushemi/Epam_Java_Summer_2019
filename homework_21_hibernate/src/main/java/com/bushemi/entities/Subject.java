@@ -1,27 +1,38 @@
-package com.bushemi.model;
+package com.bushemi.entities;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.*;
 import java.util.Objects;
 import java.util.UUID;
 
-public class SubjectDto {
+@Entity
+@DynamicInsert
+@DynamicUpdate
+public class Subject {
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(length = 16)
+    private UUID id;
 
+    @Column(unique = true)
     private String subjectName;
 
-    public SubjectDto() {
+    public Subject() {
     }
 
-    public SubjectDto(String id, String subjectName) {
+    public Subject(UUID id, String subjectName) {
         this.id = id;
         this.subjectName = subjectName;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -36,8 +47,8 @@ public class SubjectDto {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof SubjectDto)) return false;
-        SubjectDto subject = (SubjectDto) o;
+        if (!(o instanceof Subject)) return false;
+        Subject subject = (Subject) o;
         return Objects.equals(getId(), subject.getId()) &&
                 Objects.equals(getSubjectName(), subject.getSubjectName());
     }

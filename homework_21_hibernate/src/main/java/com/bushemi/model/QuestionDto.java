@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class QuestionDto {
 
-    private UUID id = UUID.randomUUID();
+    private String id;
 
     private String testId;
 
@@ -14,17 +14,26 @@ public class QuestionDto {
     public QuestionDto() {
     }
 
-    public QuestionDto(UUID id, String testId, String mainText) {
+    public QuestionDto(String testId, String mainText) {
+        this.testId = testId;
+        this.mainText = mainText;
+    }
+
+    public QuestionDto(String mainText) {
+        this.mainText = mainText;
+    }
+
+    public QuestionDto(String id, String testId, String mainText) {
         this.id = id;
         this.testId = testId;
         this.mainText = mainText;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
