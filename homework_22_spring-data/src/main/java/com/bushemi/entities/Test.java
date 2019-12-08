@@ -25,6 +25,9 @@ public class Test {
     @Column
     private String testName;
 
+    @Column
+    private Integer difficulty;
+
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions = new ArrayList<>();
 
@@ -76,20 +79,29 @@ public class Test {
         this.questions = questions;
     }
 
+    public Integer getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Integer difficulty) {
+        this.difficulty = difficulty;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Test)) return false;
         Test test = (Test) o;
-        return Objects.equals(id, test.id) &&
-                Objects.equals(subject, test.subject) &&
-                Objects.equals(testName, test.testName) &&
-                Objects.equals(questions, test.questions);
+        return Objects.equals(getId(), test.getId()) &&
+                Objects.equals(getSubject(), test.getSubject()) &&
+                Objects.equals(getTestName(), test.getTestName()) &&
+                Objects.equals(getDifficulty(), test.getDifficulty()) &&
+                Objects.equals(getQuestions(), test.getQuestions());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, subject, testName, questions);
+        return Objects.hash(getId(), getSubject(), getTestName(), getDifficulty(), getQuestions());
     }
 
     @Override
@@ -98,6 +110,7 @@ public class Test {
                 "id=" + id +
                 ", subject=" + subject +
                 ", testName='" + testName + '\'' +
+                ", difficulty=" + difficulty +
                 ", questions=" + questions +
                 '}';
     }

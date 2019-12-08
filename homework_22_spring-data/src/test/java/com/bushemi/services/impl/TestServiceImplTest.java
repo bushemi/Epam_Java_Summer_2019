@@ -1,15 +1,12 @@
 package com.bushemi.services.impl;
 
-import com.bushemi.hibernate.cfg.HibernateConfiguration;
+import com.bushemi.BasicSpringTest;
 import com.bushemi.model.QuestionDto;
 import com.bushemi.model.SubjectDto;
 import com.bushemi.model.TestDto;
 import com.bushemi.services.TestService;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
@@ -22,9 +19,8 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {HibernateConfiguration.class})
-public class TestServiceImplTest {
+
+public class TestServiceImplTest extends BasicSpringTest {
 
     @Autowired
     private TestService testService;
