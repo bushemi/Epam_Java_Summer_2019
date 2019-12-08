@@ -2,12 +2,13 @@ package com.bushemi.repositories;
 
 import com.bushemi.entities.Test;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.UUID;
 
-public interface TestRepository extends JpaRepository<Test, UUID> {
+public interface TestRepository extends JpaRepository<Test, UUID>, JpaSpecificationExecutor<Test> {
     void deleteById(UUID id);
 
     @Query("SELECT t FROM Test t WHERE t.difficulty > ?1")
