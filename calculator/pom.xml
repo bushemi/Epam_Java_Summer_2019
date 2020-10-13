@@ -14,7 +14,7 @@
         <java.version>1.8</java.version>
         <maven-compiler-plagin.version>3.7.0</maven-compiler-plagin.version>
         <maven-assembly-plagin.version>2.3</maven-assembly-plagin.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <logback.version>1.2.3</logback.version>
         <slf4j.version>1.7.25</slf4j.version>
         <calc.interface.version>1.0</calc.interface.version>
